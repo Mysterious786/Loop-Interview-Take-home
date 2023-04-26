@@ -1,11 +1,14 @@
-
+import { Route,Routes } from 'react-router-dom'
 import './App.scss'
-import Login from './login-page/login-page.component'
+import Login from './component/login-page/login-page.component'
+import Home from './component/home/home.component'
 function App() {
  return( 
- <div>
-  <Login/>
- </div>
+ <Routes>
+  
+  <Route  path='/' element={<Login/>}/>
+  <Route path="/landing-page" element={<Home/>}/>
+ </Routes>
     
   )
 }
