@@ -36,9 +36,10 @@ const RestaurantList = () => {
   const googleMapAdd = ()=>{
     console.log(storeValue);
   }
-  
-  
 
+
+
+ 
   return (
     <div className='autocomplete-container'>
       <h1>Restaurant Dashboard</h1>
@@ -51,10 +52,14 @@ const RestaurantList = () => {
       <Button variant="contained" color="success" onClick={()=>googleMapAdd()}>
   Add
 </Button>
-
     </div>
   );
 };
 
 export default RestaurantList;
+
+
+
+
+
 
