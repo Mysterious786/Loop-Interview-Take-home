@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import axios from 'axios';
 import {Stack,Autocomplete,TextField, Button} from "@mui/material"
 import GoogleChart from '../googlechartmap/googlechartmap.component';
@@ -15,7 +15,7 @@ interface Restaurant{
 const RestaurantList = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
-  const [value,setValue] = useState<string | null>(null);
+  const [value,setValue] = useState<string | null>('Subway');
   useEffect(() => {
     const fetchRestaurants = async () => {
       const response = await axios.get('https://api.airtable.com/v0/appjWdL7YgpxIxCKA/restaurants?maxRecords=10000&view=Grid%20view', {
@@ -44,6 +44,7 @@ const RestaurantList = () => {
   return (
     <div className='autocomplete-container'>
       <h1>Restaurant Dashboard</h1>
+      
       <Stack spacing={2} width='250px'>
         <Autocomplete  options={array} renderInput={(params)=><TextField {...params}/>}
         value={value}

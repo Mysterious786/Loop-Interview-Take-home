@@ -1,6 +1,7 @@
 import axios,{AxiosResponse} from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 interface ApiResponse{
   records:{
     id:string;
@@ -26,12 +27,16 @@ async function validateCredentials(username: string, password: string): Promise<
 function LoginPage(){
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
+const dispatch = useDispatch();
 const navigate = useNavigate();
 async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
   const isValid = await validateCredentials(username, password);
   if (isValid) {
     console.log('successful');
+    dispatch({type:'LOGIN'});
+  
+    
     navigate('/landing-page');
   } else {
     alert('Please check ur Credentials');
