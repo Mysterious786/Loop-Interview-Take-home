@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import {Stack,Autocomplete,TextField, Button} from "@mui/material"
+import GoogleChart from '../googlechartmap/googlechartmap.component';
 
 interface Restaurant{
     id:string;
@@ -17,7 +18,7 @@ const RestaurantList = () => {
   const [value,setValue] = useState<string | null>(null);
   useEffect(() => {
     const fetchRestaurants = async () => {
-      const response = await axios.get('https://api.airtable.com/v0/appjWdL7YgpxIxCKA/restaurants?maxRecords=3&view=Grid%20view', {
+      const response = await axios.get('https://api.airtable.com/v0/appjWdL7YgpxIxCKA/restaurants?maxRecords=10000&view=Grid%20view', {
         headers: {
           Authorization: 'Bearer keyfXgn8PL6pB3x32'
         }
@@ -36,7 +37,7 @@ const RestaurantList = () => {
   const googleMapAdd = ()=>{
     console.log(storeValue);
   }
-
+  console.log(restaurants);
 
 
  
@@ -49,10 +50,11 @@ const RestaurantList = () => {
         onChange={(event:unknown, newValue: string| null)=>setValue(newValue)} freeSolo
         />
       </Stack>
+      <GoogleChart restaurant={storeValue} />
       <Button variant="contained" color="success" onClick={()=>googleMapAdd()}>
   Add
 </Button>
-    </div>
+ </div>
   );
 };
 
